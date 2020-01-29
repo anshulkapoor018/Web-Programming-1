@@ -1,0 +1,12 @@
+{
+  "name": "in_class_exercise_1",
+  "version": "1.0.0",
+  "description": "In-Class Exercise 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node app.js"
+  },
+  "author": "Anshul Kapoor",
+  "license": "ISC"
+}
