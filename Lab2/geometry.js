@@ -73,7 +73,7 @@ const volumeOfSphere = function volumeOfSphere(radius) {
         throw "Radius entered is out of bounds"
     }
     var volume = (4/3) * Math.PI * Math.pow(radius, 3);
-    return volume;
+    return volume.toFixed(2);
 }
 
 const surfaceAreaOfSphere = function surfaceAreaOfSphere(radius) {
