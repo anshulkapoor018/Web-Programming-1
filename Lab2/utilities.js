@@ -17,8 +17,8 @@ function deepEquality(obj1, obj2) {
         if (Object.keys(obj1).length !== Object.keys(obj2).length){ 
             return false; 
         }
-        for (var prop in obj1) {
-            if (!deepEquality(obj1[prop], obj2[prop])) {
+        for (var param in obj1) {
+            if (!deepEquality(obj1[param], obj2[param])) {
                 return false;
             }
         }
