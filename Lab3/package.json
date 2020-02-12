@@ -1,0 +1,16 @@
+{
+  "name": "cs-546-lab-3",
+  "version": "1.0.0",
+  "description": "Lab 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "author": "Anshul_Kapoor_10456388",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "prompt": "^1.0.0"
+  }
+}
