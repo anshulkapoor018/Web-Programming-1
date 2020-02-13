@@ -32,11 +32,10 @@ async function getFileAsJSON(path) {
     
     try {
         const fileObject = await JSON.parse(fileContent);
+        return fileObject;
     } catch(e) {
         throw "Not a Valid JSON String!";
     }
-
-    return fileObject;
 }
 
 async function saveStringToFile(path, text) {

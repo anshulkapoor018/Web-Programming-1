@@ -1,4 +1,4 @@
-function createMetrics(text){
+async function createMetrics(text){
     text = text.toLowerCase();
     var newText = text;
     var totalVowels = 0;
