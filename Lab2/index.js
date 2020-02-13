@@ -4,8 +4,8 @@ var geo = require('./geometry');
 const first = {a: 2, b: 3};
 const second = {a: 2, b: 4};
 const third = {b: 3, a: 2};
-const fourth = {}
-const fifth = {a: '2', b: '3'}
+const fourth = {};
+const fifth = {a: '2', b: '3'};
 
 //Testing Method DeepEquality
 console.log("Testing Method Deep Equality from Utilities.js\n")

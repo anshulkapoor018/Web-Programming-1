@@ -26,7 +26,7 @@ async function main(path, resultJSON){
     .catch(err => {
         throw err;
     });
-    console.log(result)
+    console.log(result);
   }
 }
 

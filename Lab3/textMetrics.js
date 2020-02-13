@@ -20,7 +20,6 @@ function createMetrics(text){
     }
     var onlyWords = text.replace(/[0-9]/g, '');
     var onlyWords = onlyWords.replace(/[\r\n]+/gm, " ");
-    // onlyWords = onlyWords.replace(/[&\/\\#,+()$~;%.'":*?<>{}!-]/g, ' ');
     onlyWords = onlyWords.replace(/[^a-zA-Z ]/g, " ");
     onlyWords = onlyWords.replace(/ +(?= )/g,'').trim();
     var words = onlyWords.split(" ");
