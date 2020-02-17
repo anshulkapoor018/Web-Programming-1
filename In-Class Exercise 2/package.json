@@ -1,0 +1,14 @@
+{
+  "name": "in_class_2",
+  "version": "1.0.0",
+  "description": "in class 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Anshul Kapoor",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.5.3"
+  }
+}
