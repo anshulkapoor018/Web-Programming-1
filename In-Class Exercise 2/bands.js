@@ -54,7 +54,7 @@ async function getBand(id) {
 }
 
 async function updateBand(bandId, bandName, bandMembers, yearFormed, genres, recordLabel) {
-    if (!id) throw 'You must provide an id to search for';
+    if (!bandId) throw 'You must provide an id to search for';
 
     if (!bandName) throw 'You must provide a name for the Band!';
 
@@ -79,7 +79,7 @@ async function updateBand(bandId, bandName, bandMembers, yearFormed, genres, rec
         recordLabel: recordLabel,
     };
 
-    const updatedInfo = await dogCollection.updateOne({_id: objId}, {$set: updateBand});
+    const updatedInfo = await bandCollection.updateOne({_id: objId}, {$set: updatedBand});
     if (updatedInfo.modifiedCount === 0) {
       throw 'could not update Band successfully';
     }
