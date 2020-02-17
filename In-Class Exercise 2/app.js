@@ -1,30 +1,14 @@
-const animals = require("./bands");
+const bands = require("./bands");
 const connection = require("./mongoConnection");
 
 
-// const main = async() => {
+const main = async() => {
+    const LinkinPark = await bands.addBand("Linkin Park",["Chester Bennington", "Rob Bourdon", "Brad Delson", "Dave Farrell", "Joe Hahn", "Mike Shinoda"], "2000", ["Rock"], "Universal");
+    console.log(LinkinPark);
 
-
-//     const blubBlub = await animals.createTask("t1", "its my first", false, null);
-//     console.log(blubBlub);
-
-//     const blubBlub = await animals.createTask("t2", "its my second", false, null);
-//     console.log(blubBlub);
-
-//     const blubBlub = await animals.getAllTasks();
-//     console.log(blubBlub);
-
-//     const blubBlub = await animals.getTask('5d929ddd157f9a05fec7d644');
-//     console.log(blubBlub);
-
-//     const blubBlub = await animals.completeTask('5d929ddd157f9a05fec7d644');
-//     console.log(blubBlub);
-
-//     const blubBlub1 = await animals.removeTask(blubBlub._id);
-//     console.log(blubBlub1);
-    
-
-// }
+    const Maroon5 = await bands.addBand("Maroon 5",["Adam Levine", "Jesse Carmichael", "Mickey Madden", "Matt Flynn", "Ryan Dusick"], "1994", ["Rock"], "NBC");
+    console.log(Maroon5);
+}
 
 main().catch(error => {
     console.log(error);

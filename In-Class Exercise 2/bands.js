@@ -28,8 +28,8 @@ async function addBand(bandName, bandMembers, yearFormed, genres, recordLabel) {
     if (insertInfo.insertedCount === 0) throw 'Could not add new Band';
 
     const newId = insertInfo.insertedId;
-
-    const band = await this.getBand(newId);
+    const newIDString = String(newId);
+    const band = await this.getBand(newIDString);
     return band;
 }
 
@@ -46,7 +46,7 @@ async function getBand(id) {
     const bandCollection = await bands();
     const { ObjectId } = require('mongodb');
     const objId = ObjectId.createFromHexString(id);
-    const bandSearch = await bandCollection.findOne({_id: id});
+    const bandSearch = await bandCollection.findOne({_id: objId});
     if (bandSearch === null){
         throw 'No Band with id - ' + id;
     }
