@@ -1,7 +1,7 @@
 const animals = require("./data/animals") ;
 const connection = require("./mongoConnection");
 
-const main = async () => {
+async function main(){
     // Create an animal named Sasha with the type of Dog
     const SashaObj = await animals.create("Sasha","Dog");
     console.log(SashaObj); // Log the newly created animal
@@ -33,8 +33,8 @@ const main = async () => {
     const allAnimalsAgain = await animals.getAll();
     console.log(allAnimalsAgain);
 
-    // const db = await connection();
-    // await db.serverConfig.close();
+    const db = await connection();
+    await db.serverConfig.close();
 }
 
 main().catch(error => {
