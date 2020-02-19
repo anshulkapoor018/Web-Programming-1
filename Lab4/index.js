@@ -20,12 +20,12 @@ async function main(){
     console.log("\n--------------------------------------------------------------------------\n");
 
     // Rename Sasha to Sashita
-    const updatedSashaObj = await animals.rename(String(SashaObj._id), "Sashita")
+    const updatedSashaObj = await animals.rename(SashaObj._id, "Sashita")
     console.log(updatedSashaObj); // Log the newly named Sashita
     console.log("\n--------------------------------------------------------------------------\n");
 
     // Remove Lucy
-    const removedLucyObj = await animals.remove(String(LucyObj._id))
+    const removedLucyObj = await animals.remove(LucyObj._id)
     console.log(removedLucyObj)
     console.log("\n--------------------------------------------------------------------------\n");
 

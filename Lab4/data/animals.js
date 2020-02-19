@@ -1,6 +1,17 @@
 const mongoCollections = require("../mongoCollections");
 const animals = mongoCollections.animals;
 
+// To check if ID passed is String or an Object
+function checkIDforString(id){
+    if(typeof(id) === 'string'){
+        const { ObjectId } = require('mongodb');
+        const objId = ObjectId.createFromHexString(id);
+        return objId;
+    } else if(typeof(id) === 'object'){
+        return id;
+    }
+}
+
 async function create(name, animalType){
     if(name === null || animalType === null || name === undefined || animalType === undefined || typeof(name) != 'string' ||
     typeof(animalType) != 'string') {
@@ -37,8 +48,7 @@ async function get(id){
         throw 'You must provide an id to search for';
     }    
     const animalollection = await animals();
-    const { ObjectId } = require('mongodb');
-    const objId = ObjectId.createFromHexString(id);
+    const objId = checkIDforString(id);
     const animalSearch = await animalollection.findOne({_id: objId});
     if (animalSearch === null){
         throw 'No Animal with id - ' + id;
@@ -52,8 +62,7 @@ async function remove(id){
     }
     const animalLogging = await get(id);
     const animalCollection = await animals();
-    const { ObjectId } = require('mongodb');
-    const objId = ObjectId.createFromHexString(id);
+    const objId = checkIDforString(id);
     const deletionInfoForAnimal = await animalCollection.removeOne({_id: objId});
 
     if (deletionInfoForAnimal.deletedCount === 0) {
@@ -76,8 +85,7 @@ async function rename(id, newName){
     }
     const animalToBeUpdated = await get(id);
     const animalCollection = await animals();
-    const { ObjectId } = require('mongodb');
-    const objId = ObjectId.createFromHexString(id);
+    const objId = checkIDforString(id);
     const updatedAnimal = {
         name: newName,
         animalType: animalToBeUpdated.animalType
