@@ -1,7 +1,7 @@
 {
-  "name": "in_class_3",
+  "name": "in_class_ex_3",
   "version": "1.0.0",
-  "description": "in class 3",
+  "description": "in class exercise 3",
   "main": "app.js",
   "scripts": {
     "seed": "node ./tasks/seed.js",
