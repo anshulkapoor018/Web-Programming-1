@@ -6,7 +6,7 @@ const constructorMethod = app => {
 
     app.use("/about", myRoutes);
     app.use("/story", storyRoute);
-    app.use("/education",educationRoute);
+    app.use("/education", educationRoute);
 
     app.use("*", (req, res) => {
         res.status(404).json({ error: "Not found" });
