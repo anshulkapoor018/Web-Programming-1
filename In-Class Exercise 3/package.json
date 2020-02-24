@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "Anshul Kapoor",
+  "author": "Anshul_Kapoor_10456388",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
