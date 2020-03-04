@@ -8,8 +8,8 @@ const main = async () => {
 	await db.dropDatabase();
 	//Creating first Band
     const LinkinPark = await bands.addBand("Linkin Park",["Chester Bennington", "Rob Bourdon", "Brad Delson", "Dave Farrell", "Joe Hahn", "Mike Shinoda"], 2000, ["Rock"], [], "Universal");
-    console.log(typeof String(LinkinPark._id));
-    const LinkinParkAlbum = await albums.addAlbum("Hybrid Theory", String(LinkinPark._id), ["One Step Closer", "Crawling", "Papercut", "In the End"]);
+    const LinkinParkAlbum1 = await albums.addAlbum("Hybrid Theory I", String(LinkinPark._id), ["One Step Closer", "Crawling", "Papercut", "In the End"]);
+    const LinkinParkAlbum2 = await albums.addAlbum("Hybrid Theory II", String(LinkinPark._id), ["One Step Closer", "Crawling", "Papercut", "In the End"]);
     
     //Creating Second Band
     const Maroon5 = await bands.addBand("Maroon 5",["Adam Levine", "Jesse Carmichael", "Mickey Madden", "Matt Flynn", "Ryan Dusick"], 1994, ["Rock"], [], "NBC");
