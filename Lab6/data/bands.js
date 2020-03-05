@@ -10,8 +10,8 @@ async function addBand(bandName, bandMembers, yearFormed, genres, albums, record
 
     if (!recordLabel) throw 'You must provide recordLabel for the Band!';
 
-    if (!albums || !Array.isArray(albums)) throw 'You must provide an array of albums';
-    if (albums.length !== 0) throw 'You must provide at empty album array';
+    if (!Array.isArray(albums)) albums = [];
+    // if (albums.length !== 0) throw 'You must provide at empty album array';
 
     if (!bandMembers || !Array.isArray(bandMembers)) throw 'You must provide an array of Band members';
     if (bandMembers.length === 0) throw 'You must provide at least one Band Member!';
