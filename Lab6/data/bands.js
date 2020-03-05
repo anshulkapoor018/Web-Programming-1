@@ -1,5 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const bands = mongoCollections.bands;
+const albums = require('./albums')
 
 async function addBand(bandName, bandMembers, yearFormed, genres, albums, recordLabel) {
     const bandCollection = await bands();
@@ -104,6 +105,16 @@ async function removeBand(id) {
     if (bandSearch === null){
         throw 'No Band with id - ' + id;
     } else{
+        const albumList = bandSearch.albums;
+
+        for (var j = 0; j < albumList.length; j++){
+            id = albumList[j]._id;
+            try {
+                await albums.removeAlbum(String(id));
+            } catch (e) {
+                throw 'Could not Delete Album while deleting band!';
+            }
+        }
         const deletionInfoForBand = await bandCollection.removeOne({_id: objId});
         if (deletionInfoForBand.deletedCount === 0) {
             throw `Could not delete Band with id of ${id}`;

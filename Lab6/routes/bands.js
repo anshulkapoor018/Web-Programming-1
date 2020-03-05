@@ -93,7 +93,6 @@ router.delete('/:id', async (req, res) => {
 	}
 	try {
 		const toBeDeletedBand = await bands.getBand(req.params.id);
-		console.log(toBeDeletedBand)
 		await bands.removeBand(req.params.id);
 		res.json({deleted: true, data: toBeDeletedBand});
 	} catch (e) {

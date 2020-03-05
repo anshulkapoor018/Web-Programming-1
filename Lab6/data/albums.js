@@ -89,7 +89,7 @@ async function updateAlbum(albumId, albumTitle, albumAuthor, albumSongs) {
 
 async function removeAlbum(id) {
     if (!id) throw 'You must provide an id to search for';
-
+    
     const albumCollection = await albums();
     const { ObjectId } = require('mongodb');
     const objId = ObjectId.createFromHexString(id);
