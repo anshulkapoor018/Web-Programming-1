@@ -27,7 +27,8 @@ async function addAlbum(albumTitle, albumAuthor, albumSongs) {
     if (insertInfo.insertedCount === 0) {
         throw 'Could not add new Album';
     } else {
-        const updatedInfo = await bandCollection.updateOne({ _id: objId }, { $push: { albums: newAlbum } });
+        // console.log(newAlbum._id);
+        const updatedInfo = await bandCollection.updateOne({ _id: objId }, { $push: { albums: String(newAlbum._id) } });
         if (updatedInfo.modifiedCount === 0) {
             throw 'Could not update Band with Album Data!';
         }

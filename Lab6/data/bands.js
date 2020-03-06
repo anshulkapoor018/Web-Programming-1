@@ -43,6 +43,16 @@ async function getAllBands() {
 
     const bandsData = await bandCollection.find({}).toArray();
 
+    for (var j = 0; j < bandsData.length; j++){
+        const albumList = (bandsData[j].albums);
+        var updatedAlbumObjectArray = [];
+        for (var k = 0; k < albumList.length; k++){
+            const albumObject = await albums.getAlbum(albumList[k]);
+            updatedAlbumObjectArray.push(albumObject);
+        }
+        bandsData[j].albums = [];
+        bandsData[j].albums = updatedAlbumObjectArray;
+    }
     return bandsData;
 }
 
@@ -54,6 +64,17 @@ async function getBand(id) {
     const bandSearch = await bandCollection.findOne({_id: objId});
     if (bandSearch === null){
         throw 'No Band with id - ' + id;
+    } else {
+        const albumList = (bandSearch.albums);
+        console.log(albumList);
+        var updatedAlbumObjectArray = [];
+        for (var k = 0; k < albumList.length; k++){
+            const albumObject = await albums.getAlbum(albumList[k]);
+            updatedAlbumObjectArray.push(albumObject);
+        }
+        console.log(updatedAlbumObjectArray);
+        bandSearch.albums = [];
+        bandSearch.albums = updatedAlbumObjectArray;
     }
     return bandSearch;
 }
