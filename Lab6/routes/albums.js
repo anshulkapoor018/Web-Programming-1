@@ -9,7 +9,7 @@ router.get("/:id", async (req, res) => {
     const album = await albums.getAlbum(req.params.id);
     res.status(200).json(album);
   } catch (e) {
-    res.status(404).json({ message: "not found!" });
+    res.status(404).json({ message: "Album not found!" });
   }
 });
 

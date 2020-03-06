@@ -45,6 +45,23 @@ async function getAllAlbums() {
 
     const albumsData = await albumCollection.find({}).toArray();
 
+    for (var j = 0; j < albumsData.length; j++){
+        const bandCollection = await bands();
+        const { ObjectId } = require('mongodb');
+        const objId = ObjectId.createFromHexString(albumsData[j].author);
+        const bandSearch = await bandCollection.findOne({_id: objId});
+        if (bandSearch === null){
+            throw 'No Band with id - ' + id;
+        } else {
+            let newAuthorObject = {
+                "_id": String(bandSearch._id),
+                "bandName": bandSearch.bandName
+            }
+            albumsData[j].author = "";
+            albumsData[j].author = newAuthorObject;
+        }
+    }
+
     return albumsData;
 }
 
@@ -56,6 +73,22 @@ async function getAlbum(id) {
     const albumSearch = await albumCollection.findOne({_id: objId});
     if (albumSearch === null){
         throw 'No Album with id - ' + id;
+    }
+    else {
+        const bandCollection = await bands();
+        const { ObjectId } = require('mongodb');
+        const objId = ObjectId.createFromHexString(albumSearch.author);
+        const bandSearch = await bandCollection.findOne({_id: objId});
+        if (bandSearch === null){
+            throw 'No Band with id - ' + id;
+        } else {
+            let newAuthorObject = {
+                "_id": String(bandSearch._id),
+                "bandName": bandSearch.bandName
+            }
+            albumSearch.author = "";
+            albumSearch.author = newAuthorObject;
+        }
     }
     return albumSearch;
 }
