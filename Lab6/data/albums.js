@@ -128,10 +128,6 @@ async function removeAlbum(id) {
     const { ObjectId } = require('mongodb');
     const albumObjId = ObjectId.createFromHexString(id);
     const albumSearch = await albumCollection.findOne({_id: albumObjId});
-    
-    console.log(albumSearch);
-    console.log(String(albumSearch.author));
-
     const bandCollection = await bands();
     const bandObjId = ObjectId.createFromHexString(String(albumSearch.author));
 
