@@ -126,11 +126,23 @@ async function removeAlbum(id) {
     
     const albumCollection = await albums();
     const { ObjectId } = require('mongodb');
-    const objId = ObjectId.createFromHexString(id);
-    const deletionInfoForAlbum = await albumCollection.removeOne({_id: objId});
+    const albumObjId = ObjectId.createFromHexString(id);
+    const albumSearch = await albumCollection.findOne({_id: albumObjId});
+    
+    console.log(albumSearch);
+    console.log(String(albumSearch.author));
 
-    if (deletionInfoForAlbum.deletedCount === 0) {
-      throw `Could not delete Album with id of ${id}`;
+    const bandCollection = await bands();
+    const bandObjId = ObjectId.createFromHexString(String(albumSearch.author));
+
+    const updatedInfo = await bandCollection.updateOne({ _id: bandObjId }, { $pull: { albums: id} });
+    if (updatedInfo.modifiedCount === 0) {
+        throw 'Could not update Band with removed Album Data!';
+    } else {
+        const deletionInfoForAlbum = await albumCollection.removeOne({_id: albumObjId});
+        if (deletionInfoForAlbum.deletedCount === 0) {
+            throw `Could not delete Album with id of ${id}`;
+        }
     }
 
     return true;

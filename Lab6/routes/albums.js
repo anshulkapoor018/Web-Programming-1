@@ -3,7 +3,6 @@ const router = express.Router();
 const data = require('../data/');
 const albums = data.albums;
 
-//Get album by ID
 router.get("/:id", async (req, res) => {
   try {
     const album = await albums.getAlbum(req.params.id);
@@ -13,7 +12,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//Get all albums
 router.get("/", async (req, res) => {
   try {
     const albumList = await albums.getAllAlbums();
@@ -68,6 +66,26 @@ router.patch('/:id', async (req, res) => {
 	try {
 		const updatedAlbum = await albums.updateAlbum(req.params.id, updatedObject.title, updatedObject.author, updatedObject.songs);
 		res.json(updatedAlbum);
+	} catch (e) {
+		res.status(500).json({ error: e });
+	}
+});
+
+router.delete('/:id', async (req, res) => {
+	if (!req.params.id) {
+		res.status(400).json({ error: 'You must Supply an Album ID to delete' });
+		return;
+	}
+	try {
+		await albums.getAlbum(req.params.id);
+	} catch (e) {
+		res.status(404).json({ error: 'Band not found!' });
+		return;
+	}
+	try {
+		const toBeDeletedBand = await albums.getAlbum(req.params.id);
+		await albums.removeAlbum(req.params.id);
+		res.json({deleted: true, data: toBeDeletedBand});
 	} catch (e) {
 		res.status(500).json({ error: e });
 	}

@@ -139,11 +139,17 @@ async function removeBand(id) {
         throw 'No Band with id - ' + id;
     } else{
         const albumList = bandSearch.albums;
-
+        console.log(albumList);
         for (var j = 0; j < albumList.length; j++){
-            id = albumList[j]._id;
             try {
-                await albums.removeAlbum(String(id));
+                const albumCollection = await albumsCollection();
+                const { ObjectId } = require('mongodb');
+                const objId = ObjectId.createFromHexString(albumList[j]);
+                const deletionInfoForAlbum = await albumCollection.removeOne({_id: objId});
+            
+                if (deletionInfoForAlbum.deletedCount === 0) {
+                  throw `Could not delete Album with id of ${id}`;
+                }
             } catch (e) {
                 throw 'Could not Delete Album while deleting band!';
             }

@@ -3,8 +3,6 @@ const router = express.Router();
 const data = require('../data/');
 const bands = data.bands;
 
-
-//Get Band by ID
 router.get("/:id", async (req, res) => {
   try {
     const band = await bands.getBand(req.params.id);
@@ -14,7 +12,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//Get all Bands
 router.get("/", async (req, res) => {
   try {
     const bandList = await bands.getAllBands();
@@ -56,7 +53,6 @@ router.post('/', async (req, res) => {
 	}
 });
 
-//Put
 router.put('/:id', async (req, res) => {
 	const updatedData = req.body;
 	if (!updatedData.bandName || !updatedData.bandMembers || !updatedData.yearFormed || !updatedData.genres || !updatedData.recordLabel) {
@@ -77,8 +73,6 @@ router.put('/:id', async (req, res) => {
 		res.status(500).json({ error: e });
 	}
 });
-
-//Delete
 
 router.delete('/:id', async (req, res) => {
 	if (!req.params.id) {
