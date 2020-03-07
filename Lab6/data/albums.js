@@ -93,18 +93,6 @@ async function getAlbum(id) {
     return albumSearch;
 }
 
-async function getAlbumForBand(id) {
-    if (!id) throw 'You must provide an id to search for';
-    const albumCollection = await albums();
-    const { ObjectId } = require('mongodb');
-    const objId = ObjectId.createFromHexString(id);
-    const albumSearch = await albumCollection.findOne({_id: objId});
-    if (albumSearch === null){
-        throw 'No Album with id - ' + id;
-    }
-    return albumSearch;
-}
-
 async function updateAlbum(albumId, albumTitle, albumAuthor, albumSongs) {
     if (!albumId) throw 'You must provide an id to search for';
 
@@ -151,7 +139,6 @@ async function removeAlbum(id) {
 module.exports = {
     addAlbum,
     getAllAlbums,
-    getAlbumForBand,
     getAlbum,
     updateAlbum,
     removeAlbum

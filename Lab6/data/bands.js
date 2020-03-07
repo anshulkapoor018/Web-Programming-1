@@ -73,7 +73,6 @@ async function getBand(id) {
         throw 'No Band with id - ' + id;
     } else {
         const albumList = (bandSearch.albums);
-        console.log(albumList);
         var updatedAlbumObjectArray = [];
         for (var k = 0; k < albumList.length; k++){
             const albumCollection = await albumsCollection();
@@ -86,7 +85,6 @@ async function getBand(id) {
                 updatedAlbumObjectArray.push(albumSearch)
             }
         }
-        console.log(updatedAlbumObjectArray);
         bandSearch.albums = [];
         bandSearch.albums = updatedAlbumObjectArray;
     }

@@ -47,5 +47,31 @@ router.post('/', async (req, res) => {
 	}
 });
 
+router.patch('/:id', async (req, res) => {
+	const requestBody = req.body;
+	let updatedObject = {};
+	try {
+		const oldPost = await albums.getAlbum(req.params.id);
+		console.log(oldPost.author._id);
+		if (requestBody.newTitle && requestBody.newTitle !== oldPost.title) updatedObject.title = requestBody.newTitle;
+		if (requestBody.newSongs && !oldPost.songs.includes(requestBody.newSongs)) {
+			const newSongArray = oldPost.songs;
+			newSongArray.push(requestBody.newSongs);
+			updatedObject.songs = newSongArray;
+		}
+		updatedObject.author = String(oldPost.author._id);
+	} catch (e) {
+		res.status(404).json({ error: 'Album not found' });
+		return;
+	}
+
+	try {
+		const updatedAlbum = await albums.updateAlbum(req.params.id, updatedObject.title, updatedObject.author, updatedObject.songs);
+		res.json(updatedAlbum);
+	} catch (e) {
+		res.status(500).json({ error: e });
+	}
+});
+
 module.exports = router;
 
