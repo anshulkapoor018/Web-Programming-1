@@ -50,12 +50,17 @@ router.patch('/:id', async (req, res) => {
 	let updatedObject = {};
 	try {
 		const oldPost = await albums.getAlbum(req.params.id);
-		console.log(oldPost.author._id);
-		if (requestBody.newTitle && requestBody.newTitle !== oldPost.title) updatedObject.title = requestBody.newTitle;
+		if (requestBody.newTitle && requestBody.newTitle !== oldPost.title) {
+			updatedObject.title = requestBody.newTitle;
+		} else {
+			updatedObject.title = oldPost.title;
+		}
 		if (requestBody.newSongs && !oldPost.songs.includes(requestBody.newSongs)) {
 			const newSongArray = oldPost.songs;
 			newSongArray.push(requestBody.newSongs);
 			updatedObject.songs = newSongArray;
+		} else {
+			updatedObject.songs = oldPost.songs;
 		}
 		updatedObject.author = String(oldPost.author._id);
 	} catch (e) {
