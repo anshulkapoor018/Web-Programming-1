@@ -1,6 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const bands = mongoCollections.bands;
-const albums = require('./albums')
+const albums = require('./albums');
+const albumsCollection = mongoCollections.albums;
 
 async function addBand(bandName, bandMembers, yearFormed, genres, albums, recordLabel) {
     const bandCollection = await bands();
@@ -12,7 +13,6 @@ async function addBand(bandName, bandMembers, yearFormed, genres, albums, record
     if (!recordLabel) throw 'You must provide recordLabel for the Band!';
 
     if (!Array.isArray(albums)) albums = [];
-    // if (albums.length !== 0) throw 'You must provide at empty album array';
 
     if (!bandMembers || !Array.isArray(bandMembers)) throw 'You must provide an array of Band members';
     if (bandMembers.length === 0) throw 'You must provide at least one Band Member!';
@@ -47,8 +47,15 @@ async function getAllBands() {
         const albumList = (bandsData[j].albums);
         var updatedAlbumObjectArray = [];
         for (var k = 0; k < albumList.length; k++){
-            const albumObject = await albums.getAlbum(albumList[k]);
-            updatedAlbumObjectArray.push(albumObject);
+            const albumCollection = await albumsCollection();
+            const { ObjectId } = require('mongodb');
+            const objId = ObjectId.createFromHexString(albumList[k]);
+            const albumSearch = await albumCollection.findOne({_id: objId});
+            if (albumSearch === null){
+                throw 'No Album with id - ' + id;
+            } else {
+                updatedAlbumObjectArray.push(albumSearch)
+            }
         }
         bandsData[j].albums = [];
         bandsData[j].albums = updatedAlbumObjectArray;
@@ -69,8 +76,15 @@ async function getBand(id) {
         console.log(albumList);
         var updatedAlbumObjectArray = [];
         for (var k = 0; k < albumList.length; k++){
-            const albumObject = await albums.getAlbum(albumList[k]);
-            updatedAlbumObjectArray.push(albumObject);
+            const albumCollection = await albumsCollection();
+            const { ObjectId } = require('mongodb');
+            const objId = ObjectId.createFromHexString(albumList[k]);
+            const albumSearch = await albumCollection.findOne({_id: objId});
+            if (albumSearch === null){
+                throw 'No Album with id - ' + id;
+            } else {
+                updatedAlbumObjectArray.push(albumSearch)
+            }
         }
         console.log(updatedAlbumObjectArray);
         bandSearch.albums = [];
