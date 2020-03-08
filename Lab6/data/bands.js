@@ -139,7 +139,7 @@ async function removeBand(id) {
         throw 'No Band with id - ' + id;
     } else{
         const albumList = bandSearch.albums;
-        console.log(albumList);
+
         for (var j = 0; j < albumList.length; j++){
             try {
                 const albumCollection = await albumsCollection();
