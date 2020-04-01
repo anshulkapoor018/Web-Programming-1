@@ -1,0 +1,31 @@
+*{
+    background-color:lightgray; 
+    box-sizing:border-box;
+}
+body{
+    font-family:"Times New Roman";
+}
+.error{
+    color:red;
+}
+h1{
+    color:black;
+}
+.Display_User{
+    color:black;
+    font-family: "Cambria";
+}
+input[type=submit]{
+    background-color:grey;
+    color:black;
+    border:2px solid;
+}
+input[type=submit]:hover{
+    padding:5px;
+}
+.P_Found{
+    color:green;
+}
+p{
+    font-size:1.3rem;
+}
