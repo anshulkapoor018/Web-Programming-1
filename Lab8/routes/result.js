@@ -47,11 +47,12 @@ router.post("/", async (req, res) => {
 		console.log("Phrase is not a Palindrome!");
 	}
   let renderData = {
+    phrase: inputString,
     isPalindrome: isPalindrome
   }
-//   //console.log(renderData)
-  //res.json(renderData)
-  res.render("users/index", renderData);
+  // console.log(renderData)
+  // res.json(renderData)
+  res.render("result/index", renderData);
 });
 
 module.exports = router;
