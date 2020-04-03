@@ -26,7 +26,7 @@ function check_Palindrome(phrase){
 }
 
 router.post("/", async (req, res) => {
-  let inputString = req.body.personName;
+  let inputString = req.body['text-to-test'];
   console.log(inputString)
   if(!inputString) {
     errorArray.push("Input String is not given");
@@ -41,17 +41,12 @@ router.post("/", async (req, res) => {
   var alphanumericInputString = (inputString.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
 	console.log(alphanumericInputString)
 	var isPalindrome = check_Palindrome(alphanumericInputString);
-	if(isPalindrome == true) {
-		console.log("Phrase is a Palindrome!");
-	} else {
-		console.log("Phrase is not a Palindrome!");
-	}
+	
   let renderData = {
     phrase: inputString,
     isPalindrome: isPalindrome
   }
-  // console.log(renderData)
-  // res.json(renderData)
+
   res.render("result/index", renderData);
 });
 
