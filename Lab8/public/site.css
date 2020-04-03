@@ -8,12 +8,15 @@ body{
 .error{
     color:red;
 }
+.success{
+    color: #28a745;
+}
+
+.failure{
+    color: #dc3545;
+}
 h1{
     color:black;
-}
-.Display_User{
-    color:black;
-    font-family: "Cambria";
 }
 input[type=submit]{
     background-color:grey;
@@ -23,9 +26,20 @@ input[type=submit]{
 input[type=submit]:hover{
     padding:5px;
 }
-.P_Found{
-    color:green;
-}
 p{
     font-size:1.3rem;
+}
+
+.page-link,
+.page-link:link {
+  color: #0000FF;
+}
+
+.page-link:hover {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.page-link:active {
+  color: #8A2BE2;
 }

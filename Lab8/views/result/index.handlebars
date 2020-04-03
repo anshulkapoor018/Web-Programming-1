@@ -1,5 +1,9 @@
 <main>
-    <p class = "success">{{{phrase}}}</p>
-    <p>Is '{{{phrase}}}' a palindrome? {{{isPalindrome}}}</p>
-    <a href ='/static/palidromeChecker.html'>Try another palindrome</a>
+    {{#if isPalindrome}}
+        <p class = "success">{{phrase}}</p>
+    {{else}}
+        <p class = "failure">{{phrase}}</p>
+    {{/if}}
+    <p>Is '{{phrase}}' a palindrome? {{isPalindrome}}</p>
+    <a href ='/static/palidromeChecker.html' class="page-link">Try another palindrome</a>
 </main>
