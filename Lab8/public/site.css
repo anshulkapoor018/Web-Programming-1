@@ -1,5 +1,5 @@
 *{
-    background-color:lightgray; 
+    background-color:whitesmoke; 
     box-sizing:border-box;
 }
 body{
@@ -15,17 +15,30 @@ body{
 .failure{
     color: #dc3545;
 }
+
 h1{
     color:black;
 }
+
 input[type=submit]{
     background-color:grey;
     color:black;
     border:2px solid;
 }
+
 input[type=submit]:hover{
     padding:5px;
 }
+
+.phrase{
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+}
+
+.phrase:focus{
+	border: 1px solid #0C0;
+}
+
 p{
     font-size:1.3rem;
 }

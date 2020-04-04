@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
 
   if(!inputString || inputString.length === 0) {
     let renderData = {
+      title: "",
       phrase: inputString,
       isPalindrome: isPalindrome,
       errorMsg: "Input String is not given"
@@ -38,10 +39,11 @@ router.post("/", async (req, res) => {
   }
   else{
     var alphanumericInputString = (inputString.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
-    console.log(alphanumericInputString)
+
     var isPalindrome = check_Palindrome(alphanumericInputString);
     
     let renderData = {
+      title: "The Palindrome Results!",
       phrase: inputString,
       isPalindrome: isPalindrome,
       errorMsg: ""
