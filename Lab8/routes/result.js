@@ -27,27 +27,28 @@ function check_Palindrome(phrase){
 
 router.post("/", async (req, res) => {
   let inputString = req.body['text-to-test'];
-  console.log(inputString)
-  if(!inputString) {
-    errorArray.push("Input String is not given");
-  }
-  if(typeof(inputString) != 'string') {
-    errorArray.push("inputString is not a type of string")
-  }
-  if(inputString.length === 0) {
-    errorArray.push("inputString must be not empty")
-  }
-  
-  var alphanumericInputString = (inputString.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
-	console.log(alphanumericInputString)
-	var isPalindrome = check_Palindrome(alphanumericInputString);
-	
-  let renderData = {
-    phrase: inputString,
-    isPalindrome: isPalindrome
-  }
 
-  res.render("result/index", renderData);
+  if(!inputString || inputString.length === 0) {
+    let renderData = {
+      phrase: inputString,
+      isPalindrome: isPalindrome,
+      errorMsg: "Input String is not given"
+    }
+    res.render("result/error", renderData);
+  }
+  else{
+    var alphanumericInputString = (inputString.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
+    console.log(alphanumericInputString)
+    var isPalindrome = check_Palindrome(alphanumericInputString);
+    
+    let renderData = {
+      phrase: inputString,
+      isPalindrome: isPalindrome,
+      errorMsg: ""
+    }
+  
+    res.render("result/index", renderData);
+  }
 });
 
 module.exports = router;

@@ -1,9 +1,11 @@
 <main>
     {{#if isPalindrome}}
         <p class = "success">{{phrase}}</p>
+        <p>Is '{{phrase}}' a palindrome? True</p>
     {{else}}
         <p class = "failure">{{phrase}}</p>
+        <p>Is '{{phrase}}' a palindrome? False</p>
     {{/if}}
-    <p>Is '{{phrase}}' a palindrome? {{isPalindrome}}</p>
+    
     <a href ='/static/palidromeChecker.html' class="page-link">Try another palindrome</a>
 </main>
