@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       isPalindrome: isPalindrome,
       errorMsg: "Input String is not given"
     }
-    res.render("result/error", renderData);
+    res.status(400).render("result/error", renderData);
   }
   else{
     var alphanumericInputString = (inputString.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
