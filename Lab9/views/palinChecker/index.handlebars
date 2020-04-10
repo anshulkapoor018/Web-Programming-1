@@ -1,0 +1,21 @@
+<form id="static-form" method="POST">
+    <fieldset>
+        <legend>Palindrome Checking Form</legend>
+            <div class="form-group">
+                <label>
+                    Enter a String:
+                    <input type = "textarea" name = "phrase" class = "phrase" id= "phrase">
+                </label>
+            </div>
+            <div class="form-group hidden" id="error-container">
+                <div class="alert alert-danger text-goes-here"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+            <div class="form-group hidden" id="result-container">
+                <div class="alert alert-success text-goes-here"></div>
+            </div>
+    </fieldset>
+</form>
+<ol id="attempts"></ol> 

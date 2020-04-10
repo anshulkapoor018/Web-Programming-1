@@ -1,0 +1,41 @@
+.is-palindrome{
+    color:#0000FF
+}
+
+.not-palindrome{
+    color:#FF0000
+}
+
+h1{
+    color:"red"
+}
+
+h2{
+    color:"blue"
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+h1 {
+    border: 2px solid;
+}
+
+p{
+    font-style: normal;
+    margin: 35px;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+  
+h4{
+    font-size: 1.25rem;
+}
+
+form{
+    display: block;
+    margin-top: 1em;
+}
