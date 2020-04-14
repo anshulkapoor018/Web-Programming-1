@@ -22,7 +22,6 @@
         return true;
     }
     const staticForm = document.getElementById("static-form");
-    // document.write(document.getElementById("number1").value)
 
     if (staticForm) {
         const firstNumberElement = document.getElementById("phrase");
@@ -39,8 +38,6 @@
                 resultContainer.classList.add("hidden");
                 const firstStringValue = firstNumberElement.value
                 const parsedfirstStringValue = String(firstStringValue);
-                //var len = attempts.getElementsByClassName("LI").length;
-                //document.getElementById("no_of_attempts").value = "NO of attempts made till now is " + len;
                 var alphanumericInputString = (parsedfirstStringValue.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
                 const check_is_Prime = is_Prime(alphanumericInputString);
                 if(check_is_Prime){
