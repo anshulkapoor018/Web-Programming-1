@@ -1,7 +1,7 @@
 {
   "name": "lab9",
   "version": "1.0.0",
-  "description": "Lab 89",
+  "description": "Lab 9",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
