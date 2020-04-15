@@ -1,25 +1,28 @@
 (function() {
     function is_Prime(phrase){
         if(phrase == null || phrase.length == 0) {
-            console.log("Nothing found!");
             throw "Phrase Value can not be null"
         }
-        if ((phrase.length) % 2 === 0) {
-            total_chars = (phrase.length) / 2;
-        } else {
-            if (phrase.length === 1) {
-              return true;
+        var alphanumericInputString = (phrase.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
+        if(alphanumericInputString.length == 0){
+            return false
+        } else{
+            if ((alphanumericInputString.length) % 2 === 0) {
+                total_chars = (alphanumericInputString.length) / 2;
             } else {
-              total_chars = (phrase.length - 1) / 2;
+                if (alphanumericInputString.length === 1) {
+                  return true;
+                } else {
+                  total_chars = (alphanumericInputString.length - 1) / 2;
+                }
             }
-        }
-            
-        for (var x = 0; x < total_chars; x++) {
-            if (phrase[x] != phrase.slice(-1-x)[0]) {
-              return false;
+            for (var x = 0; x < total_chars; x++) {
+                if (alphanumericInputString[x] != alphanumericInputString.slice(-1-x)[0]) {
+                  return false;
+                }
             }
+            return true;
         }
-        return true;
     }
     const staticForm = document.getElementById("static-form");
 
@@ -34,12 +37,11 @@
             try {
                 var li = document.createElement("li");
                 var attempts = document.getElementById("attempts");
-                errorContainer.classList.add("hidden");
-                resultContainer.classList.add("hidden");
+                errorContainer.hidden = true;
+                resultContainer.hidden = true;
                 const firstStringValue = firstNumberElement.value
                 const parsedfirstStringValue = String(firstStringValue);
-                var alphanumericInputString = (parsedfirstStringValue.replace(/[^A-Za-z0-9\s]/g,"").replace(/\s/g,'')).toLowerCase();
-                const check_is_Prime = is_Prime(alphanumericInputString);
+                const check_is_Prime = is_Prime(parsedfirstStringValue);
                 if(check_is_Prime){
                     li.className = "is-palindrome"
                     li.appendChild(document.createTextNode( parsedfirstStringValue + " is a Palindrome" ))
@@ -55,7 +57,7 @@
             } catch (e) {
                 const message = typeof e === "string" ? e : e.message;
                 errorTextElement.textContent = e;
-                errorContainer.classList.remove("hidden");
+                errorContainer.hidden = false;
             }
         });
 }

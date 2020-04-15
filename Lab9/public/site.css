@@ -14,12 +14,18 @@ body{
     color:#FF0000
 }
 
+label, textarea {
+    vertical-align: middle;
+}
+
 .phrase{  
     overflow:hidden;
     font-size:14px;
     border-radius:5px;
     border:2px solid #556677;
     width: 300px;
+    height: 25px;
+    margin-top: 5px;
 }
 
 .btn{
@@ -43,6 +49,18 @@ body{
     border-radius: 10px;
     box-shadow: 5px 5px 5px #eee;
     text-shadow:none;
+}
+
+footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top-style: solid;
+    border-width: 1px;
+    border-color:black;
+    background-color: #fff;
+    color: black;
 }
 
 h1{

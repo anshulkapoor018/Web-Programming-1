@@ -2,10 +2,8 @@
     <fieldset>
         <legend>Palindrome Checking Form</legend>
             <div class="form-group">
-                <label>
-                    Enter a Phrase:
-                    <input type = "textarea" name = "phrase" class = "phrase" id= "phrase">
-                </label>
+                <label for="phrase"> Enter a Phrase: </label>
+                <textarea name = "phrase" class = "phrase" id= "phrase"></textarea>
                 <label>
                      <input type="submit" value="Submit" class = "btn">
                 </label>
@@ -13,9 +11,6 @@
             <div class="form-group hidden" id="error-container">
                 <div class="alert alert-danger text-goes-here"></div>
             </div>
-            {{!-- <div class="form-group">
-                <button type="submit" class="btn">Submit</button>
-            </div> --}}
             <div class="form-group hidden" id="result-container">
                 <div class="alert alert-success text-goes-here"></div>
             </div>
