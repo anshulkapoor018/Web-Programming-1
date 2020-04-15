@@ -1,3 +1,11 @@
+html,body{
+    height:100%; 
+}
+
+body{ 
+    background:whitesmoke; 
+}
+
 .is-palindrome{
     color:#0000FF
 }
@@ -6,16 +14,43 @@
     color:#FF0000
 }
 
+.phrase{  
+    overflow:hidden;
+    font-size:14px;
+    border-radius:5px;
+    border:2px solid #556677;
+    width: 300px;
+}
+
+.btn{
+    border-color: teal;
+    border-radius: 10px;
+    width: 75px;
+    height: 25px;
+    background: black;
+    font-size:14px;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
+.btn:hover{
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
 h1{
     color:"red"
 }
 
 h2{
     color:"blue"
-}
-
-body{
-    background-color: whitesmoke;
 }
 
 h1 {
