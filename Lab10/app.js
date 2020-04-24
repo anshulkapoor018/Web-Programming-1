@@ -73,17 +73,14 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/private",async function(req, res){
-
   let hasErrors = true;
   let errors = [];
-  if(!req.session.AuthCookie)
-  {
+  if(!req.session.AuthCookie) {
     auth = "Not Authorised User"
     errors.push("Not Authorised, Please Login");
     res.status(403).render("layouts/main", {hasErrors:hasErrors, errors: errors});
   }
-  else
-  {
+  else {
     auth = "Authorised User"
     let userId = req.session.AuthCookie;
     let userData = await uData.getUserData(userId);
@@ -96,64 +93,47 @@ app.post("/login", async (req, res) => {
   let hasErrors = false;
   let errors = [];
   let userId = req.session.AuthCookie;
-  if(userId)
-  {
+  if(userId) {
     auth = "Authorised User"
     res.redirect("/private");
   }
-  else
-  {
+  else {
     let userName = req.body.username;
 	  console.log(userName);
     let password = req.body.password;
     user = data.users.find(element=>element.username === userName)
-    if(!user)
-    {
-      // console.log("User is Authorized after Checking the credentials");
+    if(!user) {
         auth = "Not Authorised User"
         hasErrors = true;
         errors.push("Invalid Username or Password");
         res.status(401);
         res.render("layouts/main", {hasErrors:hasErrors, errors: errors});
     }
-    else
-    {
+    else {
         let isSame = await bcrypt.compare(password, user.hashedPassword);
-
-        if(!isSame)
-        {
-         // console.log("User is Not Authorized after Checking the credentials");
+        if(!isSame) {
            auth = "Not Authorised User"
            hasErrors = true;
            errors.push("Invalid Username/Password");
            res.status(401);
            res.render("layouts/main", {hasErrors:hasErrors, errors: errors});
         }
-        else
-        {
-         // console.log("User is Authorized after Checking the credentials");
+        else {
           auth = "Authorised User"
           let userId = await uData.getUserId(userName);
-         // let userData = await uData.getUserData(userId);
           req.session.AuthCookie = userId;
-
-          //console.log(req.session);
-          //console.log(session.AuthCookie);
-         // res.render("users/private", {layout:false, userdata : userData});
-         res.redirect("/private");
+          res.redirect("/private");
         }
     }
   }
-
 });
+
 app.get("/logout", async (req, res) => {
-  //auth = "User Logged Out"
   req.session.destroy(function(err) {
     // cannot access session here
   })
-  res.render("users/logout",{layout:false});
+  res.render("users/logout", {layout:false});
 })
-
 
 app.listen(3000, () => {
   console.log("We've now got a server!");

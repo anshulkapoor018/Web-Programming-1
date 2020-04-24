@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>My LogIn</title>
+    <title>Log In Page</title>
     <link rel="stylesheet" href="/public/site.css">
 </head>
 <body>
-    <header>
-            <h1>Authenticate yourself to my LogIn Page</h1>
+    <header align = "center">
+            <h1>User Authentication Login Form</h1>
     </header>
     <main>
-        <fieldset>
-                <form id="form2" name ="loginForm" action="/login" method="POST">
-                <label for="username">UserName</label>
-                    <input type="text" name="username" id="username" placeholder="Enter the Username" />  
-                <label for="password"> Password </label>
-                    <input type="password" name="password" id="password" placeholder="Enter the Password" />
-                <br/>
-                <button type="submit">Login</button>
+        <div class="main">
+            <form id="login-form" name ="loginForm" class = "form1" align = "center" action="/login" method="POST">
+                <label>
+                    <input type="text" name="username" id="username" class = "inputFields" align = "center" placeholder="Enter your Username" />  
+                </label>
+                <label>
+                    <input type="password" name="password" id="password" class = "inputFields" align = "center" placeholder="Enter your Password" />
+                 </label>
+                <button type="submit" class="submit" align="center">Login</button>
             </form>
             {{#if hasErrors}}
                 <ul>
@@ -28,7 +29,7 @@
                     {{/each}}
                 </ul>
             {{/if}}
-        </fieldset>
+        </div>
     </main>
 </body>
 </html> 
