@@ -4,14 +4,13 @@ const session = require('express-session')
 const bcrypt = require('bcryptjs');
 const exphbs = require("express-handlebars");
 const uData = require("./data/userData");
-
 const data = require("./users");
 const app = express();
 const static = express.static(__dirname + "/public");
 
 app.use(session({
   name: 'AuthCookie',
-  secret: 'some secret string!...sshhhhhh',
+  secret: 'some secret string!',
   resave: false,
   saveUninitialized: true,
 }))
@@ -51,8 +50,7 @@ app.use("/private", function(req, res, next){
     let errors = [];
     errors.push("Not Logged In, Please Login");
     res.status(403).render("layouts/main", {hasErrors:hasErrors, errors: errors});
-  }
-  else {
+  } else {
     next();
   }
 });
@@ -65,8 +63,7 @@ app.get("/", async (req, res) => {
     auth = "Not Authorised User"
     errors.push("Not Authorised, Please Login");
     res.render("layouts/main", {hasErrors:hasErrors, errors: errors});
-  }
-  else {
+  } else {
     auth = "Authorised User"
     res.redirect("/private");
   }
@@ -79,8 +76,7 @@ app.get("/private",async function(req, res){
     auth = "Not Authorised User"
     errors.push("Not Authorised, Please Login");
     res.status(403).render("layouts/main", {hasErrors:hasErrors, errors: errors});
-  }
-  else {
+  } else {
     auth = "Authorised User"
     let userId = req.session.AuthCookie;
     let userData = await uData.getUserData(userId);
@@ -96,8 +92,7 @@ app.post("/login", async (req, res) => {
   if(userId) {
     auth = "Authorised User"
     res.redirect("/private");
-  }
-  else {
+  } else {
     let userName = req.body.username;
 	  console.log(userName);
     let password = req.body.password;
@@ -108,8 +103,7 @@ app.post("/login", async (req, res) => {
         errors.push("Invalid Username or Password");
         res.status(401);
         res.render("layouts/main", {hasErrors:hasErrors, errors: errors});
-    }
-    else {
+    } else {
         let isSame = await bcrypt.compare(password, user.hashedPassword);
         if(!isSame) {
            auth = "Not Authorised User"
@@ -117,8 +111,7 @@ app.post("/login", async (req, res) => {
            errors.push("Invalid Username/Password");
            res.status(401);
            res.render("layouts/main", {hasErrors:hasErrors, errors: errors});
-        }
-        else {
+        } else {
           auth = "Authorised User"
           let userId = await uData.getUserId(userName);
           req.session.AuthCookie = userId;
@@ -130,12 +123,14 @@ app.post("/login", async (req, res) => {
 
 app.get("/logout", async (req, res) => {
   req.session.destroy(function(err) {
-    // cannot access session here
+    // Session cannot be accesses here
   })
   res.render("users/logout", {layout:false});
 })
 
 app.listen(3000, () => {
   console.log("We've now got a server!");
-  if (process && process.send) process.send({done: true});
+  if (process && process.send) {
+    process.send({done: true});
+  }
 });
