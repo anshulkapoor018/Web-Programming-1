@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{ userdata.firstName }}'s Data!</title>
+    <title>{{ userdata.firstName }}'s Profile Page</title>
     <link rel="stylesheet" href="../../public/site.css">
 </head>
 <body>
-    <header>
+    <header align = "center">
             <h1>Hello {{userdata.firstName}}.</h1>
     </header>
-    <main>
-        <p>Username: {{ userdata.username }}</p>
-        <p>First Name: {{ userdata.firstName }}</p>
-        <p>Last Name: {{ userdata.lastName }}</p>
-        <p>Profession: {{ userdata.profession }}</p>
-        <p>Bio: {{ userdata.bio }}</p>
-        <div>
-            <button type="button" onclick="window.location.href='./logout'" class="btn btn-default"> Logout </button>
-        </div>
-    </main>
+    <div class="loginDiv">
+        <main>
+            <p>Username: {{ userdata.username }}</p>
+            <p>First Name: {{ userdata.firstName }}</p>
+            <p>Last Name: {{ userdata.lastName }}</p>
+            <p>Profession: {{ userdata.profession }}</p>
+            <p>Bio: {{ userdata.bio }}</p>
+
+            <div align = "center">
+                <button type="button" class="submit" align = "center" onclick="window.location.href='./logout'" > Logout </button>
+            </div>
+        </main>
+    </div>
 </body>
 </html> 

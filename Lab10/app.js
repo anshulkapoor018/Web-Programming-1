@@ -21,7 +21,7 @@ app.use(express.json());
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
-var auth = "Not Authorized"
+var auth = "Not Authenticated"
 
 app.use(function(request, response, next) {
   console.log('Timestamp ' + new Date().toUTCString());
@@ -30,16 +30,16 @@ app.use(function(request, response, next) {
   next();
   if(request.session) {
     if(!request.session.AuthCookie) {
-      console.log("User is not Authorized yet!")
+      console.log("User is not Authenticated yet!")
     }
     else {
-      console.log("User is Authorized!");
+      console.log("User is Authenticated!");
     } 
   } else {
     if(request.originalUrl == '/logout')
       console.log('User has been logged out!');
     else
-      console.log("User is not Authorized yet!")
+      console.log("User is not Authenticated yet!")
   }
   console.log("---------------------------------------------------")
 });
@@ -94,7 +94,6 @@ app.post("/login", async (req, res) => {
     res.redirect("/private");
   } else {
     let userName = req.body.username;
-	  console.log(userName);
     let password = req.body.password;
     user = data.users.find(element=>element.username === userName)
     if(!user) {
