@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../public/site.css">
 </head>
 <body>
-    <header align = "center">
+    <header>
             <h1>Hello {{userdata.firstName}}.</h1>
     </header>
     <div class="loginDiv">
@@ -17,8 +17,8 @@
             <p>Profession: {{ userdata.profession }}</p>
             <p>Bio: {{ userdata.bio }}</p>
 
-            <div align = "center">
-                <button type="button" class="submit" align = "center" onclick="window.location.href='./logout'" > Logout </button>
+            <div class = "buttonDiv">
+                <button type="button" class="submit" onclick="window.location.href='./logout'" > Logout </button>
             </div>
         </main>
     </div>
